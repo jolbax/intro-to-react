@@ -25,8 +25,29 @@
          }
        }
 
+       class IncludeMe extends React.Component {
+         render(){
+           return (
+             <div>
+              <h2>And.. hi {this.props.name}!</h2>
+             </div>
+           );
+         }
+       }
+
+       class Main extends React.Component{
+         render(){
+           return (
+             <div>
+              <Greeting />
+              <IncludeMe name="Jose Luis" />
+             </div>
+           );
+         }
+       }
+
        ReactDOM.render(
-         <Greeting />, document.getElementById('app')
+         <Main />, document.getElementById('app')
        );
     </script>
 </body>
