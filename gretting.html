@@ -15,6 +15,9 @@
 
 
   <script type="text/babel">
+
+      const name = "Jose Luis";
+
        class Greeting extends React.Component {
          render() {
            return (
@@ -26,10 +29,27 @@
        }
 
        class IncludeMe extends React.Component {
+         constructor(props) {
+           super(props);
+           this.state = {
+             date: new Date()
+           };
+           this.tick = this.tick.bind(this);
+           }
+             tick(){
+               this.setState({
+                 date: new Date()
+               })
+             }
+
          render(){
+           setInterval(this.tick, 1000);
+
            return (
              <div>
               <h2>And.. hi {this.props.name}!</h2>
+              <p>Today is:  <code>{this.state.date.toDateString()}</code></p>
+              <p>And the time is: <code>{this.state.date.toTimeString()}</code></p>
              </div>
            );
          }
@@ -37,10 +57,13 @@
 
        class Main extends React.Component{
          render(){
+           setInterval(1000);
            return (
              <div>
               <Greeting />
-              <IncludeMe name="Jose Luis" />
+              <IncludeMe name={ name } />
+              <IncludeMe name={ name } />
+              <IncludeMe name={ name } />
              </div>
            );
          }
