@@ -21,7 +21,24 @@
             this.state = {
                 number: 1
             }
+        // This binding is necessary to make `this` work in the callback
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
         }
+
+          increment(e){
+            console.log(e.target);
+            this.setState({
+              number: this.state.number += 1
+            });
+          }
+
+          decrement(e){
+            console.log(e.target);
+            this.setState({
+              number: Math.max(1, this.state.number -= 1)
+            });
+          }
 
         render() {
           return (
@@ -29,6 +46,9 @@
               <img src={this.props.image} alt="Bloc Logo"/>
               <h2>Current program: {this.props.label}</h2>
                 <h2>Current week: {this.state.number}</h2>
+                  <button onClick={this.increment}>Increment</button>
+                  <button onClick={this.decrement}>Decrement</button>
+
               <p>Current Date: {this.props.date.toLocaleDateString()}</p>
             </div>
           );
